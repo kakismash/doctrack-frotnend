@@ -1,0 +1,7 @@
+{
+  "name": "doctrack",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
