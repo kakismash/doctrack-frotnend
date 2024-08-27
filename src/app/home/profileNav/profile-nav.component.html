@@ -1,0 +1,17 @@
+<ion-list>
+  <ion-item
+    [routerLink]="profileRoute.path"
+    class="nav-element"
+    [button]="true"
+    [color]="isRouteActive(profileRoute.path) ? 'primary' : ''"
+  >
+    <ion-icon slot="start" [name]="profileRoute.data.icon"></ion-icon>
+    <ion-label>{{ profileRoute.data.title }}</ion-label>
+  </ion-item>
+</ion-list>
+  <div class="logout-button-container">
+    <ion-button expand="full" color="danger" (click)="logout()">
+      <ion-icon slot="start" name="log-out"></ion-icon>
+      Logout
+    </ion-button>
+</div>

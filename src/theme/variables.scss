@@ -1,2 +1,26 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
+:root {
+    --ion-color-primary: #6200ea;
+    --ion-color-primary-rgb: 98, 0, 234;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255, 255, 255;
+    --ion-color-primary-shade: #3700b3;
+    --ion-color-primary-tint: #bb86fc;
+  
+    --ion-color-secondary: #03dac6;
+    --ion-color-secondary-rgb: 3, 218, 198;
+    --ion-color-secondary-contrast: #000000;
+    --ion-color-secondary-contrast-rgb: 0, 0, 0;
+    --ion-color-secondary-shade: #018786;
+    --ion-color-secondary-tint: #70efde;
+  
+    // Add more colors as needed
+  }
+
+body {
+  font-family: 'Roboto', sans-serif;
+}

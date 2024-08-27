@@ -35,3 +35,22 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+
+@import 'theme/variables';
+@import '~@ionic/angular/css/core.css';
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+@import '~@ionic/angular/css/display.css';;
+
+// @use './styles.scss' as *;
+
+// Define additional SCSS variables
+$font-stack: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+$default-spacing: 16px;
+
+// Example usage of SCSS variables
+body {
+  font-family: $font-stack;
+}

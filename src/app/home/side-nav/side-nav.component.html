@@ -1,0 +1,12 @@
+<ion-list class="nav-list">
+  <ion-item
+    *ngFor="let item of routes"
+    [routerLink]="item.path"
+		[button]="true"
+    expand="block"
+		[color]="isRouteActive(item.path) ? 'primary' : ''"
+  >
+    <ion-icon slot="start" [name]="item.data.icon"></ion-icon>
+    <ion-label slot="end">{{ item.data.title }}</ion-label>
+  </ion-item>
+</ion-list>

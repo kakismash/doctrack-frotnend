@@ -1,0 +1,76 @@
+<div class="profile">
+    <ion-list>
+        <ion-item *ngIf="!userReady">
+            <ion-label>
+                <h2>Loading...</h2>
+                <p>Please wait...</p>
+                <app-lottie-standalone
+                    animationPath="assets/animations/other/bobber.json"
+                    width="350"
+                    height="350"
+                />
+            </ion-label>
+        </ion-item>
+        <div *ngIf="userReady">
+            <ion-item>
+                <ion-input 
+                    type="text"
+                    labelPlacement="fixed" 
+                    [(ngModel)]="tempUser.firstname" 
+                    name="firstName"
+                    placeholder="John"
+                    required
+                >
+                    <div slot="label">
+                        Firstname: 
+                        <ion-text *ngIf="!tempUser.firstname" color="danger">(Required)</ion-text>
+                    </div>
+                </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input 
+                    type="text"
+                    labelPlacement="fixed" 
+                    [(ngModel)]="tempUser.lastname" 
+                    name="lastname"
+                    placeholder="Doe"
+                    required
+                >
+                    <div slot="label">
+                        Lastname: 
+                        <ion-text *ngIf="!tempUser.lastname" color="danger">(Required)</ion-text>
+                    </div>
+                </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="fixed">Email:</ion-label>
+                <ion-input type="email" [(ngModel)]="tempUser.email" name="email" required disabled>
+                </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="fixed">Username:</ion-label>
+                <ion-input type="text" [(ngModel)]="tempUser.username" name="username" required disabled></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="tel" [(ngModel)]="tempUser.phone" name="phone" required labelPlacement="fixed">
+                    <div slot="label">
+                        Phone: 
+                        <ion-text *ngIf="!tempUser.phone" color="danger">(Required)</ion-text>
+                    </div>
+                </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-button expand="block" type="submit" [disabled]="!canSave()" (click)="saveProfile()">Save</ion-button>
+                    </ion-col>
+                    <ion-col size="6" class="ion-text-right">
+                      <ion-button expand="block" [disabled]="canSave()" (click)="updatePassword()">Update Password</ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+        </div>
+    </ion-list>
+</div>
