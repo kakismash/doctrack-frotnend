@@ -1,0 +1,27 @@
+<!-- Search Input -->
+<ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterUsers()"></ion-searchbar>
+
+<!-- User List -->
+<ion-list>
+  <ion-item *ngFor="let user of paginatedUsers">
+    <ion-label>
+      <h2>{{ user.firstname }} {{ user.lastname }}</h2>
+      <p>{{ user.email }}</p>
+      <p>{{ user.role }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<!-- Pagination Controls at the bottom -->
+<div class="pagination-container">
+  <ion-button (click)="prevPage()" [disabled]="currentPage === 1">Previous</ion-button>
+  
+  <!-- Dynamically Render Page Numbers -->
+  <ion-button *ngFor="let page of paginationNumbers"
+              (click)="goToPage(page)"
+              [disabled]="currentPage === page">
+    {{ page }}
+  </ion-button>
+  
+  <ion-button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</ion-button>
+</div>

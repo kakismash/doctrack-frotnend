@@ -1,0 +1,48 @@
+ion-list {
+  padding: 5px; /* Less padding for the list */
+}
+
+ion-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 5px; /* Less padding for a more compact item */
+  border-bottom: 1px solid #ddd;
+}
+
+ion-label h2 {
+  font-size: 16px; /* Slightly smaller font size for names */
+  font-weight: bold;
+  margin-bottom: 3px; /* Less margin for a tighter design */
+}
+
+ion-label p {
+  font-size: 13px; /* Slightly smaller font size for email and role */
+  color: #666;
+  margin-bottom: 3px; /* Less margin for compactness */
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  padding: 5px 0; /* Reduced padding for pagination */
+}
+
+.pagination-container ion-button {
+  --padding-start: 8px; /* Less padding for buttons */
+  --padding-end: 8px;
+  margin: 0 3px; /* Less space between buttons */
+}
+
+ion-content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+ion-searchbar {
+  margin-bottom: 5px; /* Less margin under the search bar */
+  --padding-start: 5px; /* Compact search bar */
+  --padding-end: 5px;
+  --height: 40px; /* Reducing height of the search bar */
+}

@@ -14,17 +14,17 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getUserById(userId: number): Observable<User> {
-    return this.http.get<User>(`${this.apiGatewayUrl}${this.userControllerPath}/${userId}`);
+  getUserById(userId: number): Observable<UserI> {
+    return this.http.get<UserI>(`${this.apiGatewayUrl}${this.userControllerPath}/${userId}`);
   }
 
-  updateUser(userId: number, user: Partial<User>): Observable<User> {
-    return this.http.put<User>(`${this.apiGatewayUrl}${this.userControllerPath}/${userId}`, user);
+  updateUser(userId: number, user: Partial<UserI>): Observable<UserI> {
+    return this.http.put<UserI>(`${this.apiGatewayUrl}${this.userControllerPath}/${userId}`, user);
   }
 
 }
 
-export interface User {
+export interface UserI {
   id: number;
   username: string;
   email: string;

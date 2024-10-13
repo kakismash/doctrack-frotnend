@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-users',
@@ -6,4 +7,16 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './users.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UsersComponent { }
+export class UsersComponent implements OnInit {
+  isMobile: boolean = false;
+  
+  constructor(private breakpointObserver: BreakpointObserver) {}
+
+  ngOnInit() {
+    // Detect screen size and set `isMobile` accordingly
+    this.breakpointObserver.observe([Breakpoints.Handset])
+      .subscribe(result => {
+        this.isMobile = result.matches;
+      });
+  }
+}
