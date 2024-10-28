@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PanelComponent } from './panel.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UsersComponent } from './users/users.component';
-import { ProfileComponent } from './profile/profile.component';
+import { LocationsComponent } from './locations/locations.component';
+import { DashboardComponent } from '../standalone/dashboard/dashboard.component';
+import { ProfileComponent } from '../standalone/profile/profile.component';
+import { UsersComponent } from '../standalone/users/users.component';
+import { Super_adminComponent } from './super_admin.component';
 
 export const routesChildrens = [
   {
@@ -20,6 +21,14 @@ export const routesChildrens = [
     data: {
       title: 'Users Page',
       icon: 'people-sharp',
+    }
+  },
+  {
+    path: 'locations',
+    component: LocationsComponent,
+    data: {
+      title: 'Locations Page',
+      icon: 'location-sharp',
     }
   }
 ]
@@ -39,7 +48,7 @@ export const profileChildrenRoutes = [
 const routes: Routes = [
   {
     path: '',
-    component: PanelComponent,
+    component: Super_adminComponent,
     children: [
       ...routesChildrens,
       ...profileChildrenRoutes,
@@ -61,4 +70,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PanelComponentRoutingModule {}
+export class Super_adminRoutingModule {}

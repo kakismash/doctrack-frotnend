@@ -1,5 +1,6 @@
 <ion-list>
   <ion-item
+    *ngIf="profileRoute?.path"
     [routerLink]="profileRoute.path"
     class="nav-element"
     [button]="true"

@@ -9,7 +9,7 @@ import {RoleConfig, ROLES_TOKEN} from '../config/roles.config';
   providedIn: 'root'
 })
 export class AuthService {
-
+  
   private apiGatewayUrl = environment.apiGatewayUrl;
 
   private authControllerPath = '/auth';
@@ -87,6 +87,12 @@ export class AuthService {
     return decoded?.role || null;
   }
 
+
+  isSuperAdmin() {
+    const role = this.getRoleFromToken();
+    return role === this.roles.superAdmin;
+  }
+
   isAdmin(): boolean {
     const role = this.getRoleFromToken();
     return role === this.roles.admin;
@@ -102,6 +108,20 @@ export class AuthService {
     return role === this.roles.owner;
   }
 
+  getLoggedLocationsFromToken(): number[] {
+    const decoded = this.parseToken();
+    return decoded?.locations || [];  
+  }
+
+  setSelectedLocation(selectedLocation: number): void {
+    sessionStorage.setItem('selectedLocation', selectedLocation.toString());  
+  }
+
+  getDefaultLocationFromToken(): number | null {
+    const decoded = this.parseToken();
+    return decoded?.defaultLocation || null;
+  }
+
 }
 
 interface loginResponseDto {
@@ -113,5 +133,7 @@ interface DecodedToken {
   username?: string; // 'sub' will be mapped to 'username'
   role?: string;
   id?: number;
+  locations?: number[];
+  defaultLocation?: number;
   // Add more properties as needed
 }

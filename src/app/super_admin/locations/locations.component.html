@@ -1,0 +1,56 @@
+<ion-content>
+  <!-- Floating button for general actions like adding a location -->
+  <ion-fab vertical="top" horizontal="end" slot="fixed" >
+    <ion-fab-button (click)="addLocation()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Search bar with 3/4 width -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="9">
+        <ion-searchbar [(ngModel)]="filter" (ionInput)="onFilterChange(filter)"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item *ngIf="empty">
+      No results found.
+  </ion-item>
+
+  <ion-grid *ngIf="!empty">
+    <ion-row>
+      <ion-col size="12" size-md="6" size-lg="4" *ngFor="let location of locations; let i = index">
+        <ion-card 
+          (click)="selectCard(i, $event)" 
+          [ngClass]="{'selected-card': selectedCardIndex === i}">
+          <ion-card-header>
+            <ion-card-title>{{ location.name }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            {{ location.description }}
+          </ion-card-content>
+          <!-- Right-side green block that shows only if selected -->
+          <div *ngIf="selectedCardIndex === i" class="button-block">
+            <div class="action-button edit-button" (click)="onEdit(location)">Edit</div>
+            <div class="action-button delete-button" (click)="onDelete(location)">Delete</div>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Pagination Controls -->
+  <div class="pagination">
+      <ion-button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 0">Prev</ion-button>
+
+      <ion-button *ngFor="let page of [].constructor(totalPages); let i = index"
+                  (click)="onPageChange(i)"
+                  [color]="i === currentPage ? 'primary' : 'light'">
+          {{ i + 1 }}
+      </ion-button>
+
+      <ion-button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === totalPages - 1">Next</ion-button>
+  </div>
+</ion-content>

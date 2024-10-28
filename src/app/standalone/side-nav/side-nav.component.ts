@@ -2,8 +2,10 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivationEnd, Router, RouterModule } from '@angular/router';
 import { IonItem, IonList, IonIcon, IonLabel, IonButton } from "@ionic/angular/standalone";
-import { routesChildrens } from '../panel-routing.module';
 import { filter } from 'rxjs';
+import { routesChildrens as superAdminRouteChildrens } from 'src/app/super_admin/super_admin-routing.module';
+import { routesChildrens as adminRoutesChildrens } from 'src/app/admin/admin-routing.module';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -18,16 +20,23 @@ import { filter } from 'rxjs';
 })
 export class SideNavComponent implements OnInit {
 
-  routes = [...routesChildrens];
+  routes: Array<any> = [];
   currentRoute: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   isRouteActive(route: string): boolean {
     return this.currentRoute === route;
   }
 
   ngOnInit() {
+
+    if (this.authService.isSuperAdmin()) {
+      this.routes = [...superAdminRouteChildrens];
+    } else {
+      this.routes = [...adminRoutesChildrens];
+    }
+
     this.router.events
     .pipe(filter(event => event instanceof ActivationEnd && event.snapshot.firstChild === null))
     .subscribe(event => {

@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { addIcons } from "ionicons";
-import { UserI } from 'src/app/service/user.service';
+import {MatButton} from "@angular/material/button";
+import {IonicModule} from "@ionic/angular";
 
 @Component({
   selector: 'app-desktop-table',
@@ -17,7 +17,9 @@ import { UserI } from 'src/app/service/user.service';
     MatSortModule,
     FormsModule,
     MatTableModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatButton,
+    IonicModule
   ],
   templateUrl: './desktopTable.component.html',
   styleUrl: './desktopTable.component.scss',

@@ -1,0 +1,81 @@
+<ion-menu side="start" menuId="first" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu Content</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <app-side-nav></app-side-nav>
+  </ion-content>
+</ion-menu>
+
+<ion-menu side="end" menuId="profile-menu" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Profile Content</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <app-profile-nav></app-profile-nav>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        <ion-icon [name]="currentPageIcon"></ion-icon>
+        {{ currentPageTittle }}
+      </ion-title>
+      <ion-buttons slot="start">
+        <!-- Specify the menuId="first" -->
+        <ion-menu-button menu="first"></ion-menu-button>
+      </ion-buttons>
+
+      <!-- Location selection for all users -->
+    <div>
+      <!-- If super admin, show search dropdown with all locations -->
+      <ng-container *ngIf="isSuperAdmin; else userLocationsTemplate">
+        <ion-item>
+          <ion-searchbar
+            [(ngModel)]="locationFilter"
+            (ionInput)="onSearchLocation(locationFilter)"
+          ></ion-searchbar>
+          <ion-select
+            [(ngModel)]="selectedLocation"
+            (ionChange)="onLocationSelected($event)"
+          >
+            <ion-select-option
+              *ngFor="let location of filteredLocations"
+              [value]="location"
+            >
+              {{ location.name }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ng-container>
+      <!-- Regular users select from their locations in the token -->
+      <ng-template #userLocationsTemplate>
+        <ion-item>
+          <ion-label>Select Location</ion-label>
+          <ion-select [(ngModel)]="selectedLocation" (ionChange)="onLocationSelected($event)">
+            <ion-select-option *ngFor="let location of userLocations" [value]="location">
+              {{ location.name }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ng-template>
+    </div>
+
+    <!-- Profile menu -->
+    <ion-buttons slot="end">
+      <ion-button (click)="openProfileMenu()">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+  <ion-content class="ion-padding">
+    <router-outlet></router-outlet>
+  </ion-content>
+</div>

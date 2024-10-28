@@ -1,26 +1,35 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
+import { Super_adminGuard } from './guard/super_admin.guard';
+import { AdminGuard } from './guard/admin.guard';
 
 const routes: Routes = [
-  { 
-    path: 'login', 
-    loadChildren: () => import('./login/login.module').then(m => m.LoginModule) 
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/panel.module').then( m => m.PanelModule),
-    canActivate: [AuthGuard]
+    path: 'super_admin',
+    loadChildren: () => import('./super_admin/super_admin.module').then(m => m.Super_adminModule),
+    canActivate: [AuthGuard, Super_adminGuard], // Use canActivate here
+    data: {
+      role: 'super_admin'
+    }
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    canActivate: [AuthGuard, AdminGuard],  // Use canActivate instead of canLoad
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',  // Consider using login or a home page instead of admin
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    redirectTo: 'login',  // Consider redirecting to login or a generic error page
   }
 ];
 

@@ -19,6 +19,7 @@
     <app-profile-nav></app-profile-nav>
   </ion-content>
 </ion-menu>
+
 <div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
@@ -27,12 +28,26 @@
         {{ currentPageTittle }}
       </ion-title>
       <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
+        <ion-menu-button menu="first"></ion-menu-button>
       </ion-buttons>
+      <!-- Location selection for all users -->
+      <div slot="end">
+        <!-- If super admin, show search dropdown with all locations -->
+        <ng-container *ngIf="isSuperAdmin">
+          <ion-item>
+            <ion-button fill="clear" (click)="presentPopover($event)">
+              {{ selectedLocation?.name ? selectedLocation?.name : 'Select Location' }}
+            </ion-button>
+          </ion-item>
+        </ng-container>
+        <!-- Regular users select from their locations in the token -->
+      </div>
+
+      <!-- Profile menu -->
       <ion-buttons slot="end">
-        <ion-menu-button menu="profile-menu">
+        <ion-button (click)="openProfileMenu()">
           <ion-icon name="person-circle-outline"></ion-icon>
-        </ion-menu-button>
+        </ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>

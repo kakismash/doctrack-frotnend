@@ -1,0 +1,79 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination ion-button {
+  margin: 0 5px;
+}
+
+.header-fixed {
+  right: 50px;
+  position: absolute;
+  z-index: 10000;
+}
+
+/* Add this to your global styles (styles.css or component.scss) */
+@media (max-width: 600px) {
+  ion-card {
+    padding: 2px !important;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  ion-card-header {
+    padding: 4px 8px !important; /* Reduce header padding on mobile */
+  }
+  ion-card-content {
+    padding: 8px !important; /* Reduce content padding on mobile */
+  }
+}
+
+.selected-card {
+  border-color: var(--ion-color-primary); /* Highlight selected card */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add some shadow for emphasis */
+}
+
+ion-card {
+  cursor: pointer; /* Change cursor to indicate clickable cards */
+  border: 2px solid transparent; /* Add a transparent border to prevent layout shift */
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.button-block {
+  width: 25%; /* Fills 1/4 of the card */
+  height: 100%; /* Full height */
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  position: absolute;
+  top: 0;
+  right: 0; /* Align it to the right side */
+}
+
+.action-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 50%; /* Each button takes half of the block */
+  color: white;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: var(--ion-color-primary); /* Primary color */
+}
+
+.delete-button {
+  background-color: var(--ion-color-danger); /* Red color for delete */
+}

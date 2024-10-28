@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonList, IonItem, IonLabel, IonContent, IonButton, IonSearchbar } from "@ionic/angular/standalone";
-import { addIcons } from "ionicons";
 import { UserI } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-mobile-items',
   standalone: true,
-  imports: [IonSearchbar, 
+  imports: [IonSearchbar,
     IonButton,
     IonContent,
     IonSearchbar,

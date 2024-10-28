@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   loginForm: FormGroup;
   errorMessage: string | null = null;
 
@@ -19,8 +19,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
-
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
@@ -28,11 +26,15 @@ export class LoginComponent implements OnInit {
         next: success => {
           console.log('Login success:', success);
           if (success) {
-            this.router.navigate(['/home']);
+            if (this.authService.isSuperAdmin()) {
+              this.router.navigate(['/superadmin']);
+            } else {
+              this.router.navigate(['/admin']);
+            }
           } else {
             this.errorMessage = 'Invalid login credentials';
           }
-          
+
         },
         error: error => {
           this.errorMessage = 'An error occurred during login. Please try again.';

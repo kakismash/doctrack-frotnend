@@ -1,4 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { IonicModule } from '@ionic/angular';
+import { LottieStandaloneComponent } from 'src/app/lottie/lottie.standalone.component';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserI, UserService } from 'src/app/service/user.service';
 
@@ -6,6 +12,15 @@ import { UserI, UserService } from 'src/app/service/user.service';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    LottieStandaloneComponent,
+    MatButtonModule,
+    MatIconModule,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileComponent implements OnInit {
