@@ -122,6 +122,11 @@ export class AuthService {
     return decoded?.defaultLocation || null;
   }
 
+  validateInvitationToken(token: string): Observable<any> {
+    return this.http
+                .get(`${this.apiGatewayUrl}${this.authControllerPath}/validate-invitation-token`, { params: { token } })
+  }
+
 }
 
 interface loginResponseDto {

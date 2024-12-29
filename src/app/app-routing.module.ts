@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
 import { Super_adminGuard } from './guard/super_admin.guard';
 import { AdminGuard } from './guard/admin.guard';
+import { InvitationCreateOrganizationGuardGuard } from './guard/InvitationCreateOrganizationGuard.guard';
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
     canActivate: [AuthGuard, AdminGuard],  // Use canActivate instead of canLoad
+  },
+  {
+    path: 'invite_create_organization',
+    loadComponent: () => import('./standalone/createOrganizationIntuitive/createOrganizationIntuitive.component').then(m => m.CreateOrganizationIntuitiveComponent),
+    canActivate: [InvitationCreateOrganizationGuardGuard],  // Use canActivate instead
   },
   {
     path: '',

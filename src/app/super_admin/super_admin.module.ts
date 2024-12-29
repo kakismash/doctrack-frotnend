@@ -12,6 +12,7 @@ import { ProfileNavComponent } from '../standalone/profileNav/profile-nav.compon
 import { SideNavComponent } from '../standalone/side-nav/side-nav.component';
 import { MobileItemsComponent } from '../standalone/users/mobileItems/mobileItems.component';
 import { DesktopTableComponent } from '../standalone/users/desktopTable/desktopTable.component';
+import { OrganizationComponent } from './organization/organization.component';
 
 
 
@@ -19,6 +20,7 @@ import { DesktopTableComponent } from '../standalone/users/desktopTable/desktopT
   declarations: [
     Super_adminComponent,
     LocationsComponent,
+    OrganizationComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,50 @@
+<ion-content>
+    <div class="stepper-container">
+      <mat-horizontal-stepper [linear]="true" #stepper>
+        <!-- Step 1: Organization Details -->
+        <mat-step [stepControl]="organizationForm">
+          <form [formGroup]="organizationForm">
+            <h3>Step 1: Organization Details</h3>
+            <ion-item>
+              <ion-label position="floating">Organization Name</ion-label>
+              <ion-input formControlName="organizationName"></ion-input>
+            </ion-item>
+            <ion-button expand="full" matStepperNext [disabled]="organizationForm.invalid">
+              Next
+            </ion-button>
+          </form>
+        </mat-step>
+  
+        <!-- Step 2: User Account -->
+        <mat-step [stepControl]="userForm">
+          <form [formGroup]="userForm">
+            <h3>Step 2: User Account</h3>
+            <ion-item>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input formControlName="email" type="email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input formControlName="password" type="password"></ion-input>
+            </ion-item>
+            <ion-button expand="full" matStepperNext [disabled]="userForm.invalid">
+              Next
+            </ion-button>
+          </form>
+        </mat-step>
+  
+        <!-- Step 3: Review and Submit -->
+        <mat-step>
+          <h3>Step 3: Review</h3>
+          <p>Please review your details before submission:</p>
+          <ul>
+            <li><strong>Organization Name:</strong> {{ organizationForm.value.organizationName }}</li>
+            <li><strong>Email:</strong> {{ userForm.value.email }}</li>
+          </ul>
+          <ion-button expand="full" (click)="submitForm()">
+            Submit
+          </ion-button>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+  </ion-content>

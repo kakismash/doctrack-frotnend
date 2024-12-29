@@ -27,7 +27,7 @@ export class LoginComponent {
           console.log('Login success:', success);
           if (success) {
             if (this.authService.isSuperAdmin()) {
-              this.router.navigate(['/superadmin']);
+              this.router.navigate(['/super_admin']);
             } else {
               this.router.navigate(['/admin']);
             }

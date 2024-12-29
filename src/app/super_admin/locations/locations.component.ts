@@ -66,7 +66,7 @@ export class LocationsComponent implements OnInit {
       this.pageSize = data.size;
       this.currentPage = data.number;
       this.empty = data.empty;
-      this.cdr.detectChanges(); // Manually trigger change detection
+      this.cdr.markForCheck(); // Manually trigger change detection
       if (callback) {
         callback();
       }

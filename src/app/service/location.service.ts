@@ -8,16 +8,20 @@ import { PageableResponse } from './utils';
   providedIn: 'root'
 })
 export class LocationService {
-  createLocation(newLocation: LocationSimpleDTOI): Observable<LocationSimpleDTOI> {
-    return this.http.post<LocationSimpleDTOI>(`${this.apiGatewayUrl}${this.locationControllerPath}`, newLocation);
-  }
-  
   private apiGatewayUrl = environment.apiGatewayUrl;
 
   private locationControllerPath = '/locations';
 
   constructor(private http: HttpClient) { }
 
+  createLocation(newLocation: LocationSimpleDTOI): Observable<LocationSimpleDTOI> {
+    return this.http
+      .post<LocationSimpleDTOI>(
+        `${this.apiGatewayUrl}${this.locationControllerPath}`,
+        newLocation
+      );
+  }
+  
   getLocations(currentPage: number, pageSize: number, filter: string): Observable<PageableResponse<LocationSimpleDTOI>> {
     let params = new HttpParams()
       .set('page', currentPage)

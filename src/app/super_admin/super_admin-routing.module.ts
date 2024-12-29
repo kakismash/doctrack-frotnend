@@ -5,6 +5,7 @@ import { DashboardComponent } from '../standalone/dashboard/dashboard.component'
 import { ProfileComponent } from '../standalone/profile/profile.component';
 import { UsersComponent } from '../standalone/users/users.component';
 import { Super_adminComponent } from './super_admin.component';
+import { OrganizationComponent } from './organization/organization.component';
 
 export const routesChildrens = [
   {
@@ -29,6 +30,14 @@ export const routesChildrens = [
     data: {
       title: 'Locations Page',
       icon: 'location-sharp',
+    }
+  },
+  {
+    path: 'organizations',
+    component: OrganizationComponent,
+    data: {
+      title: 'Organization Page',
+      icon: 'business-sharp',
     }
   }
 ]
